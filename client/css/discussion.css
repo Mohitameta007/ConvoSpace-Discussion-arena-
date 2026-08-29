@@ -1,0 +1,2125 @@
+/* =====================================================
+   CONVOSPACE — DISCUSSION SETUP
+===================================================== */
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+body {
+
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            var(--color-accent-soft),
+            transparent 38%
+        ),
+        var(--color-bg);
+
+}
+
+
+/* =====================================================
+   AMBIENT GLOW
+===================================================== */
+
+.discussion-glow {
+
+    position: fixed;
+
+    width: 420px;
+
+    height: 420px;
+
+    border-radius: 50%;
+
+    filter: blur(110px);
+
+    pointer-events: none;
+
+    z-index: -1;
+
+}
+
+
+.discussion-glow-one {
+
+    top: -260px;
+
+    right: -160px;
+
+    background:
+        var(--color-accent-soft);
+
+}
+
+
+.discussion-glow-two {
+
+    bottom: -280px;
+
+    left: -180px;
+
+    background:
+        var(--color-accent-soft);
+
+    opacity: 0.55;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.discussion-header {
+
+    width:
+        min(
+            calc(100% - 56px),
+            var(--content-width)
+        );
+
+    height: 64px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.discussion-brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+}
+
+
+.brand-symbol {
+
+    width: 34px;
+
+    height: 34px;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius: 50%;
+
+    color:
+        var(--color-accent);
+
+    font-family:
+        var(--font-display);
+
+    font-size: 15px;
+
+}
+
+
+.brand-text {
+
+    color:
+        var(--color-text);
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-base);
+
+    font-weight:
+        var(--weight-semibold);
+
+    letter-spacing:
+        0.04em;
+
+}
+
+
+.brand-text span {
+
+    color:
+        var(--color-accent);
+
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.setup-step {
+
+    position: absolute;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color:
+        var(--color-text-muted);
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-xs);
+
+    letter-spacing:
+        0.18em;
+
+}
+
+
+.step-active {
+
+    color:
+        var(--color-accent);
+
+}
+
+
+.step-line {
+
+    width: 28px;
+
+    height: 1px;
+
+    background:
+        var(--color-border);
+
+}
+
+
+/* =====================================================
+   THEME BUTTON
+===================================================== */
+
+.discussion-theme {
+
+    width: 37px;
+
+    height: 37px;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color:
+        var(--color-accent);
+
+    cursor: pointer;
+
+    transition:
+        all var(--transition-normal);
+
+}
+
+
+.discussion-theme:hover {
+
+    background:
+        var(--color-accent-soft);
+
+    border-color:
+        var(--color-accent);
+
+    transform:
+        rotate(12deg);
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.discussion-setup {
+
+    width:
+        min(
+            calc(100% - 56px),
+            1200px
+        );
+
+    margin: 0 auto;
+
+    padding:
+        22px 0 50px;
+
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.discussion-intro {
+
+    margin-bottom: 32px;
+
+    text-align: center;
+
+}
+
+
+.intro-label {
+
+    color:
+        var(--color-accent);
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-xs);
+
+    letter-spacing:
+        0.24em;
+
+}
+
+
+.discussion-intro h1 {
+
+    margin-top: 10px;
+
+    font-size:
+        clamp(
+            48px,
+            5.5vw,
+            72px
+        );
+
+    line-height: 0.92;
+
+}
+
+
+.discussion-intro h1 em {
+
+    color:
+        var(--color-accent);
+
+    font-style: italic;
+
+}
+
+
+.discussion-intro p {
+
+    max-width: 520px;
+
+    margin:
+        14px auto 0;
+
+    font-size:
+        var(--text-sm);
+
+    line-height: 1.55;
+
+}
+
+
+/* =====================================================
+   MAIN THREE CARD GRID
+===================================================== */
+
+.setup-content {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(0, 1fr)
+        );
+
+    gap: 18px;
+
+    width: 100%;
+
+    align-items: stretch;
+
+}
+
+
+/* =====================================================
+   THREE MAIN CARDS
+===================================================== */
+
+.setup-section {
+
+    min-width: 0;
+
+    /*
+        Keep all three cards visually balanced.
+        Content can still make the card taller.
+    */
+
+    min-height: 500px;
+
+    padding:
+        30px 28px;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-lg);
+
+    background:
+        var(--color-surface);
+
+    box-shadow:
+        var(--shadow-soft);
+
+    transition:
+        border-color var(--transition-normal),
+        transform var(--transition-normal),
+        box-shadow var(--transition-normal);
+
+}
+
+
+.setup-section:hover {
+
+    border-color:
+        var(--color-accent);
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        var(--shadow-accent);
+
+}
+
+
+/* =====================================================
+   SECTION SPACING
+===================================================== */
+
+.topic-section {
+
+    padding-left: 30px;
+
+    padding-right: 30px;
+
+}
+
+
+.participants-section,
+.roles-section {
+
+    padding-left: 28px;
+
+    padding-right: 28px;
+
+}
+
+
+/* =====================================================
+   SECTION HEADER
+===================================================== */
+
+.section-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+.section-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+}
+
+
+.section-number {
+
+    color:
+        var(--color-accent);
+
+    font-family:
+        var(--font-mono);
+
+    font-size:
+        var(--text-xs);
+
+}
+
+
+.section-title h2 {
+
+    color:
+        var(--color-text);
+
+    font-family:
+        var(--font-display);
+
+    font-size:
+        var(--text-lg);
+
+    font-weight:
+        var(--weight-regular);
+
+}
+
+
+.section-note {
+
+    color:
+        var(--color-text-muted);
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-xs);
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+.selected-note {
+
+    color:
+        var(--color-accent);
+
+}
+
+
+.section-description {
+
+    margin:
+        10px 0 18px 18px;
+
+    color:
+        var(--color-text-muted);
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-sm);
+
+    line-height: 1.5;
+
+}
+
+
+/* =====================================================
+   PARTICIPANTS
+===================================================== */
+
+.participant-options {
+
+    display: flex;
+
+    gap: 9px;
+
+    margin-left: 18px;
+
+}
+
+
+.participant-option {
+
+    flex: 1;
+
+    min-height: 82px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 5px;
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-md);
+
+    background: transparent;
+
+    color:
+        var(--color-text-muted);
+
+    cursor: pointer;
+
+    transition:
+        all var(--transition-normal);
+
+}
+
+
+.participant-option:hover {
+
+    border-color:
+        var(--color-accent);
+
+    color:
+        var(--color-text);
+
+    background:
+        var(--color-accent-soft);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.participant-option.active {
+
+    border-color:
+        var(--color-accent);
+
+    background:
+        var(--color-accent-soft);
+
+    color:
+        var(--color-text);
+
+}
+
+
+.participant-count {
+
+    color:
+        var(--color-accent);
+
+    font-family:
+        var(--font-display);
+
+    font-size:
+        var(--text-xl);
+
+    line-height: 1;
+
+}
+
+
+.participant-label {
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-xs);
+
+    letter-spacing:
+        0.12em;
+
+}
+
+
+/* =====================================================
+   TOPICS
+===================================================== */
+
+.topic-options {
+
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0;
+
+    margin-top: 24px;
+
+}
+
+
+/* =====================================================
+   TOPIC OPTION
+===================================================== */
+
+.topic-option {
+
+    min-height: 62px;
+
+    padding:
+        14px 48px 14px 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 24px;
+
+    border: none;
+
+    border-bottom:
+        1px solid var(--color-border);
+
+    background: transparent;
+
+    color:
+        var(--color-text);
+
+    font-family:
+        var(--font-primary);
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        color var(--transition-normal),
+        padding-left var(--transition-normal);
+
+}
+
+
+.topic-option:hover {
+
+    padding-left: 5px;
+
+    color:
+        var(--color-text);
+
+}
+
+
+.topic-option.active {
+
+    color:
+        var(--color-text);
+
+}
+
+
+.topic-text {
+
+    flex: 1;
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-sm);
+
+    line-height: 1.35;
+
+}
+
+
+.topic-category {
+
+    flex-shrink: 0;
+
+    font-family:
+        var(--font-secondary);
+
+    font-size:
+        var(--text-xs);
+
+    letter-spacing:
+        0.12em;
+
+    color:
+        var(--color-accent);
+
+}
+
+
+/* =====================================================
+   REFRESH TOPICS
+===================================================== */
+
+.refresh-topics-button {
+
+    position: absolute;
+
+    top: -8px;
+
+    right: 0;
+
+    width: 32px;
+
+    height: 32px;
+
+    display: grid;
+
+    place-items: center;
+
+    padding: 0;
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius: 50%;
+
+    background:
+        var(--color-surface);
+
+    color:
+        var(--color-accent);
+
+    font-size: 16px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 2;
+
+    transition:
+        background var(--transition-normal),
+        border-color var(--transition-normal),
+        transform var(--transition-normal);
+
+}
+
+
+.refresh-topics-button:hover {
+
+    border-color:
+        var(--color-accent);
+
+    background:
+        var(--color-accent-soft);
+
+    transform:
+        rotate(45deg);
+
+}
+
+
+.refresh-topics-button:active {
+
+    transform:
+        rotate(180deg) scale(0.92);
+
+}
+
+
+.refresh-topics-button.refreshing {
+
+    animation:
+        topicRefresh 400ms ease;
+
+}
+
+
+@keyframes topicRefresh {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =====================================================
+   MANUAL TOPIC BUTTON
+===================================================== */
+
+.manual-topic-button {
+
+    width: 100%;
+
+    margin-top: 7px;
+
+    padding:
+        12px 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    border: none;
+
+    background: transparent;
+
+    color:
+        var(--color-text-muted);
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-sm);
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        color var(--transition-fast);
+
+}
+
+
+.manual-topic-button:hover,
+.manual-topic-button.active {
+
+    color:
+        var(--color-accent);
+
+}
+
+
+.manual-plus {
+
+    width: 20px;
+
+    height: 20px;
+
+    flex-shrink: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius: 50%;
+
+    color:
+        var(--color-accent);
+
+}
+
+
+/* =====================================================
+   MANUAL TOPIC AREA
+===================================================== */
+
+.manual-topic-area {
+
+    width: 100%;
+
+    margin-top: 10px;
+
+    padding: 0 14px;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid transparent;
+
+    border-radius:
+        var(--radius-md);
+
+    background:
+        var(--color-surface);
+
+    max-height: 0;
+
+    opacity: 0;
+
+    overflow: hidden;
+
+    visibility: hidden;
+
+    transform:
+        translateY(-8px);
+
+    transition:
+        max-height 420ms cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        ),
+        opacity 250ms ease,
+        transform 420ms cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        ),
+        padding 420ms cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        ),
+        border-color 300ms ease;
+
+}
+
+
+.manual-topic-area.open {
+
+    max-height: 260px;
+
+    padding:
+        16px 14px;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateY(0);
+
+    border-color:
+        var(--color-border);
+
+}
+
+
+.manual-topic-area > * {
+
+    opacity: 0;
+
+    transform:
+        translateY(-5px);
+
+    transition:
+        opacity 220ms ease 100ms,
+        transform 300ms ease 100ms;
+
+}
+
+
+.manual-topic-area.open > * {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+}
+
+
+.manual-topic-area label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color:
+        var(--color-accent);
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-xs);
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+.manual-topic-area textarea {
+
+    width: 100%;
+
+    min-height: 58px;
+
+    resize: vertical;
+
+    box-sizing: border-box;
+
+    padding: 9px;
+
+    border:
+        1px solid var(--color-border-soft);
+
+    border-radius:
+        var(--radius-sm);
+
+    outline: none;
+
+    background:
+        var(--color-bg);
+
+    color:
+        var(--color-text);
+
+    font-family:
+        var(--font-display);
+
+    font-size:
+        var(--text-base);
+
+}
+
+
+.manual-topic-area textarea:focus {
+
+    border-color:
+        var(--color-accent);
+
+}
+
+
+.manual-topic-area textarea::placeholder {
+
+    color:
+        var(--color-text-muted);
+
+}
+
+
+.apply-topic {
+
+    margin-top: 8px;
+
+    padding:
+        8px 12px;
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-sm);
+
+    background:
+        var(--color-accent-soft);
+
+    color:
+        var(--color-accent);
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-xs);
+
+    letter-spacing:
+        0.12em;
+
+    cursor: pointer;
+
+}
+
+
+/* =====================================================
+   CURRENT TOPIC
+===================================================== */
+
+.current-topic {
+
+    margin:
+        18px 0 0 18px;
+
+}
+
+
+.current-topic span {
+
+    display: block;
+
+    color:
+        var(--color-text-muted);
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-xs);
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+.current-topic strong {
+
+    display: block;
+
+    margin-top: 6px;
+
+    color:
+        var(--color-text);
+
+    font-family:
+        var(--font-display);
+
+    font-size:
+        var(--text-base);
+
+    font-weight:
+        var(--weight-regular);
+
+    line-height: 1.35;
+
+}
+
+
+/* =====================================================
+   ROLE MODE
+===================================================== */
+
+.role-mode {
+
+    display: flex;
+
+    gap: 8px;
+
+    margin:
+        0 0 18px 18px;
+
+}
+
+
+.role-mode-button {
+
+    padding:
+        10px 14px;
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-sm);
+
+    background: transparent;
+
+    color:
+        var(--color-text-muted);
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-sm);
+
+    cursor: pointer;
+
+    transition:
+        all var(--transition-normal);
+
+}
+
+
+.role-mode-button:hover {
+
+    color:
+        var(--color-text);
+
+    border-color:
+        var(--color-accent);
+
+}
+
+
+.role-mode-button.active {
+
+    color:
+        var(--button-text);
+
+    background:
+        var(--color-accent);
+
+    border-color:
+        var(--color-accent);
+
+    box-shadow:
+        var(--shadow-accent);
+
+}
+
+
+/* =====================================================
+   DEFAULT ROLES
+===================================================== */
+
+.default-roles {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    margin-left: 18px;
+
+}
+
+
+.role-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding:
+        8px 0;
+
+}
+
+
+.role-avatar {
+
+    width: 32px;
+
+    height: 32px;
+
+    flex-shrink: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius: 50%;
+
+    color:
+        var(--color-accent);
+
+    font-family:
+        var(--font-display);
+
+}
+
+
+.role-info strong {
+
+    display: block;
+
+    color:
+        var(--color-text);
+
+    font-family:
+        var(--font-display);
+
+    font-size:
+        var(--text-base);
+
+    font-weight:
+        var(--weight-regular);
+
+}
+
+
+.role-info span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color:
+        var(--color-text-muted);
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-xs);
+
+}
+
+
+/* =====================================================
+   CUSTOM / CHOOSE ROLES
+===================================================== */
+
+.custom-roles {
+
+    display: none;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    margin-left: 18px;
+
+    margin-top: 8px;
+
+}
+
+
+/* Open state */
+
+.custom-roles.open {
+
+    display: flex;
+
+}
+
+
+/* =====================================================
+   ROLE SELECTOR
+===================================================== */
+
+.role-selector {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 42px;
+
+}
+
+
+/* =====================================================
+   ROLE NUMBER
+===================================================== */
+
+.role-selector > span {
+
+    flex-shrink: 0;
+
+    color:
+        var(--color-accent);
+
+    font-family:
+        var(--font-mono);
+
+    font-size:
+        var(--text-xs);
+
+    letter-spacing:
+        0.08em;
+
+}
+
+
+/* =====================================================
+   CUSTOM SELECT
+===================================================== */
+
+.role-select {
+
+    width: 100%;
+
+    min-height: 42px;
+
+    padding:
+        8px 38px 8px 13px;
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-sm);
+
+    outline: none;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    background-color:
+        var(--color-bg);
+
+    background-image:
+        linear-gradient(
+            45deg,
+            transparent 50%,
+            var(--color-accent) 50%
+        ),
+        linear-gradient(
+            135deg,
+            var(--color-accent) 50%,
+            transparent 50%
+        );
+
+    background-position:
+        calc(100% - 17px) 17px,
+        calc(100% - 12px) 17px;
+
+    background-size:
+        5px 5px,
+        5px 5px;
+
+    background-repeat:
+        no-repeat;
+
+    color:
+        var(--color-text);
+
+    font-family:
+        var(--font-display);
+
+    font-size:
+        var(--text-sm);
+
+    cursor:
+        pointer;
+
+    transition:
+        border-color var(--transition-normal),
+        background-color var(--transition-normal),
+        box-shadow var(--transition-normal);
+
+}
+
+
+/* =====================================================
+   SELECT HOVER
+===================================================== */
+
+.role-select:hover {
+
+    border-color:
+        var(--color-accent);
+
+    background-color:
+        var(--color-accent-soft);
+
+}
+
+
+/* =====================================================
+   SELECT FOCUS
+===================================================== */
+
+.role-select:focus {
+
+    border-color:
+        var(--color-accent);
+
+    box-shadow:
+        0 0 0 3px
+        var(--color-accent-soft);
+
+}
+
+
+/* =====================================================
+   SELECTED / DISABLED ROLE
+===================================================== */
+
+.role-select:disabled {
+
+    opacity:
+        0.45;
+
+    cursor:
+        not-allowed;
+
+}
+
+
+/* =====================================================
+   DROPDOWN OPTIONS
+===================================================== */
+
+.role-select option {
+
+    padding:
+        10px;
+
+    background:
+        var(--color-surface);
+
+    color:
+        var(--color-text);
+
+    font-family:
+        var(--font-primary);
+
+}
+
+
+/* =====================================================
+   PLACEHOLDER OPTION
+===================================================== */
+
+.role-select option[value=""] {
+
+    color:
+        var(--color-text-muted);
+
+}
+
+
+/* =====================================================
+   DISABLED OPTION
+===================================================== */
+
+.role-select option:disabled {
+
+    color:
+        var(--color-text-muted);
+
+}
+
+/* =====================================================
+   ⭐ IMPORTANT FIX
+   SUMMARY MUST NOT BECOME GRID COLUMN
+===================================================== */
+
+.session-summary {
+
+    grid-column:
+        1 / -1;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin-top: 0;
+
+    padding:
+        18px 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 30px;
+
+    border-top:
+        1px solid var(--color-border);
+
+    border-bottom:
+        1px solid var(--color-border);
+
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.summary-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+}
+
+
+.summary-item > span {
+
+    color:
+        var(--color-text-muted);
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-xs);
+
+    letter-spacing:
+        0.14em;
+
+}
+
+
+.summary-item strong {
+
+    max-width: 190px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color:
+        var(--color-accent);
+
+    font-family:
+        var(--font-display);
+
+    font-size:
+        var(--text-sm);
+
+    font-weight:
+        var(--weight-regular);
+
+}
+
+
+.summary-line {
+
+    width: 1px;
+
+    height: 18px;
+
+    background:
+        var(--color-border);
+
+}
+
+
+/* =====================================================
+   ⭐ IMPORTANT FIX
+   ENTER ARENA MUST SPAN ALL COLUMNS
+===================================================== */
+
+.enter-arena {
+
+    grid-column:
+        1 / -1;
+
+    width: 100%;
+
+    margin-top: 0;
+
+    text-align: center;
+
+}
+
+
+/* =====================================================
+   ENTER ARENA BUTTON
+===================================================== */
+
+.enter-arena-button {
+
+    width:
+        min(
+            100%,
+            400px
+        );
+
+    min-height: 54px;
+
+    display: grid;
+
+    grid-template-columns:
+        35px 1fr 35px;
+
+    align-items: center;
+
+    padding:
+        0 16px;
+
+    margin:
+        0 auto; /* 👈 center */
+
+    border:
+        1px solid var(--color-accent);
+
+    border-radius:
+        var(--radius-md);
+
+    background:
+        var(--color-accent);
+
+    color:
+        var(--button-text);
+
+    box-shadow:
+        var(--shadow-accent);
+
+    cursor: pointer;
+
+    transition:
+        transform var(--transition-normal),
+        box-shadow var(--transition-normal);
+
+}
+
+
+.enter-arena-button:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 18px 45px
+        rgba(
+            200,
+            164,
+            93,
+            0.22
+        );
+
+}
+
+
+.enter-icon,
+.enter-arrow {
+
+    font-size:
+        var(--text-lg);
+
+}
+
+
+.enter-text {
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-xs);
+
+    font-weight:
+        var(--weight-semibold);
+
+    letter-spacing:
+        0.16em;
+
+}
+
+
+.enter-arena p {
+
+    margin-top: 11px;
+
+    color:
+        var(--color-text-muted);
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-xs);
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.discussion-footer {
+
+    width:
+        min(
+            calc(100% - 56px),
+            1200px
+        );
+
+    margin:
+        0 auto;
+
+    padding:
+        17px 0 22px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    border-top:
+        1px solid var(--color-border);
+
+    color:
+        var(--color-text-muted);
+
+    font-family:
+        var(--font-primary);
+
+    font-size:
+        var(--text-xs);
+
+    letter-spacing:
+        0.13em;
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .setup-content {
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+
+    .roles-section {
+
+        grid-column:
+            1 / -1;
+
+    }
+
+
+    .session-summary {
+
+        grid-column:
+            1 / -1;
+
+    }
+
+
+    .enter-arena {
+
+        grid-column:
+            1 / -1;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 650px) {
+
+    .discussion-header {
+
+        width:
+            calc(100% - 30px);
+
+    }
+
+
+    .discussion-setup {
+
+        width:
+            calc(100% - 30px);
+
+        padding-top:
+            30px;
+
+    }
+
+
+    .discussion-footer {
+
+        width:
+            calc(100% - 30px);
+
+        gap: 10px;
+
+        justify-content:
+            center;
+
+        flex-wrap:
+            wrap;
+
+        text-align:
+            center;
+
+    }
+
+
+    .discussion-footer span:nth-child(2) {
+
+        display: none;
+
+    }
+
+
+    .setup-step {
+
+        display: none;
+
+    }
+
+
+    .discussion-intro h1 {
+
+        font-size: 44px;
+
+    }
+
+
+    .setup-content {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 18px;
+
+    }
+
+
+    .setup-section {
+
+        grid-column:
+            auto;
+
+        min-height:
+            auto;
+
+    }
+
+
+    .participant-options {
+
+        margin-left: 0;
+
+    }
+
+
+    .section-description {
+
+        margin-left: 0;
+
+    }
+
+
+    .topic-options {
+
+        margin-left: 0;
+
+    }
+
+
+    .topic-option {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap: 6px;
+
+    }
+
+
+    .manual-topic-area {
+
+        margin-left: 0;
+
+    }
+
+
+    .current-topic {
+
+        margin-left: 0;
+
+    }
+
+
+    .role-mode {
+
+        margin-left: 0;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .default-roles,
+    .custom-roles {
+
+        margin-left: 0;
+
+    }
+
+
+    .session-summary {
+
+        grid-column:
+            1 / -1;
+
+        gap: 14px;
+
+        padding:
+            15px 8px;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .summary-line {
+
+        display: none;
+
+    }
+
+
+    .summary-item {
+
+        flex-direction:
+            column;
+
+        gap: 4px;
+
+        flex: 1;
+
+        text-align: center;
+
+    }
+
+
+    .enter-arena {
+
+        grid-column:
+            1 / -1;
+
+    }
+
+
+    .enter-arena-button {
+
+        width: 100%;
+
+    }
+
+}

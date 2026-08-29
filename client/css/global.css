@@ -1,0 +1,142 @@
+/* =====================================================
+   CONVOSPACE — GLOBAL FOUNDATION
+===================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap");
+
+:root {
+    --color-bg: #12110f;
+    --color-bg-secondary: #1a1815;
+    --color-surface: #201e1a;
+    --color-surface-hover: #292620;
+    --color-text: #f4f0e8;
+    --color-text-secondary: #c4bdb0;
+    --color-text-muted: #938b7e;
+    --color-accent: #c8a45d;
+    --color-accent-light: #dfc47f;
+    --color-accent-soft: rgba(200, 164, 93, 0.12);
+    --color-border: rgba(244, 240, 232, 0.14);
+    --color-border-soft: rgba(244, 240, 232, 0.08);
+    --color-success: #77bb88;
+    --color-success-glow: rgba(119, 187, 136, 0.35);
+
+    --button-text: #17140f;
+    --modal-background: rgba(12, 11, 9, 0.78);
+    --modal-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+    --shadow-soft: 0 14px 40px rgba(0, 0, 0, 0.18);
+    --shadow-accent: 0 12px 30px rgba(200, 164, 93, 0.2);
+    --shadow-accent-strong: 0 18px 42px rgba(200, 164, 93, 0.3);
+
+    --font-primary: "DM Sans", Arial, sans-serif;
+    --font-secondary: "DM Mono", monospace;
+    --font-display: "Playfair Display", Georgia, serif;
+    --font-heading: "Playfair Display", Georgia, serif;
+    --font-mono: "DM Mono", monospace;
+
+    --text-xs: 0.68rem;
+    --text-sm: 0.8rem;
+    --text-base: 0.95rem;
+    --text-md: 1.08rem;
+    --text-lg: 1.35rem;
+    --text-xl: 2rem;
+
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+
+    --radius-sm: 5px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --content-width: 1100px;
+    --container-xl: 1400px;
+
+    --transition-fast: 160ms ease;
+    --transition-normal: 260ms ease;
+    --transition-smooth: 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.light-theme {
+    --color-bg: #f7f5ef;
+    --color-bg-secondary: #efede6;
+    --color-surface: #ffffff;
+    --color-surface-hover: #f3f0e8;
+    --color-text: #292721;
+    --color-text-secondary: #5f5a50;
+    --color-text-muted: #777168;
+    --color-accent: #b4873f;
+    --color-accent-light: #c9a45f;
+    --color-accent-soft: rgba(180, 135, 63, 0.1);
+    --color-border: rgba(55, 48, 38, 0.15);
+    --color-border-soft: rgba(55, 48, 38, 0.08);
+    --color-success: #4c9361;
+    --color-success-glow: rgba(76, 147, 97, 0.28);
+    --button-text: #ffffff;
+    --modal-background: rgba(41, 39, 33, 0.45);
+    --modal-shadow: 0 28px 80px rgba(41, 39, 33, 0.2);
+    --shadow-soft: 0 14px 40px rgba(41, 39, 33, 0.1);
+    --shadow-accent: 0 12px 30px rgba(180, 135, 63, 0.2);
+    --shadow-accent-strong: 0 18px 42px rgba(180, 135, 63, 0.28);
+}
+
+/* The live arena is intentionally presented in the light scheme. */
+.arena-page {
+    --color-bg: #f7f5ef;
+    --color-bg-secondary: #efede6;
+    --color-surface: #ffffff;
+    --color-surface-hover: #f3f0e8;
+    --color-text: #292721;
+    --color-text-secondary: #5f5a50;
+    --color-text-muted: #777168;
+    --color-accent: #b4873f;
+    --color-accent-light: #c9a45f;
+    --color-accent-soft: rgba(180, 135, 63, 0.1);
+    --color-border: rgba(55, 48, 38, 0.15);
+    --color-border-soft: rgba(55, 48, 38, 0.08);
+    --button-text: #ffffff;
+    --shadow-soft: 0 14px 40px rgba(41, 39, 33, 0.1);
+    --shadow-accent: 0 12px 30px rgba(180, 135, 63, 0.2);
+    --shadow-accent-strong: 0 18px 42px rgba(180, 135, 63, 0.28);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-primary);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    color: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}

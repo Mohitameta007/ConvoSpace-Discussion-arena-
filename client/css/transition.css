@@ -1,0 +1,510 @@
+/* =====================================================
+   TRANSITION PAGE — LIGHT THEME
+===================================================== */
+
+.transition-page {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+    overflow: hidden;
+
+    background: #f8f6f1;
+    color: #24231f;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.transition-header {
+    width: min(100%, 1200px);
+
+    margin: 0 auto;
+
+    padding: 22px 28px;
+}
+
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.brand {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.brand-mark {
+    width: 44px;
+    height: 44px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #d8d2c5;
+    border-radius: 50%;
+
+    color: #b88d3f;
+
+    font-family: var(--font-heading);
+    font-size: 18px;
+}
+
+
+.brand-name {
+    color: #24231f;
+
+    font-family: var(--font-primary);
+
+    font-size: 21px;
+    font-weight: 600;
+
+    letter-spacing: 0.02em;
+}
+
+
+.brand-name span {
+    color: #b88d3f;
+}
+
+
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
+
+.transition-content {
+    flex: 1;
+
+    width: min(
+        900px,
+        calc(100% - 40px)
+    );
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 40px 20px 80px;
+}
+
+
+/* =====================================================
+   LABEL
+===================================================== */
+
+.transition-label {
+    margin-bottom: 20px;
+
+    color: #b88d3f;
+
+    font-family: var(--font-primary);
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 0.22em;
+}
+
+
+/* =====================================================
+   HEADING
+===================================================== */
+
+.transition-content h1 {
+    margin: 0;
+
+    max-width: 760px;
+
+    color: #24231f;
+
+    font-family: var(--font-heading);
+
+    font-size: clamp(
+        48px,
+        7vw,
+        82px
+    );
+
+    line-height: 0.98;
+
+    font-weight: 400;
+
+    letter-spacing: -0.035em;
+}
+
+
+.transition-content h1 em {
+    color: #b88d3f;
+
+    font-style: italic;
+}
+
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.transition-description {
+    max-width: 500px;
+
+    margin: 25px 0 0;
+
+    color: #77736a;
+
+    font-family: var(--font-primary);
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   LOADER
+===================================================== */
+
+.arena-loader {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 42px;
+}
+
+
+.arena-loader span {
+    width: 7px;
+    height: 7px;
+
+    display: block;
+
+    border-radius: 50%;
+
+    background: #b88d3f;
+
+    animation:
+        arenaPulse
+        1.3s
+        infinite
+        ease-in-out;
+}
+
+
+.arena-loader span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+
+.arena-loader span:nth-child(3) {
+    animation-delay: 0.30s;
+}
+
+
+@keyframes arenaPulse {
+
+    0%,
+    70%,
+    100% {
+
+        opacity: 0.25;
+
+        transform:
+            translateY(0)
+            scale(0.8);
+    }
+
+    35% {
+
+        opacity: 1;
+
+        transform:
+            translateY(-5px)
+            scale(1);
+    }
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.transition-status {
+    margin-top: 17px;
+
+    min-height: 22px;
+
+    color: #77736a;
+
+    font-family: var(--font-primary);
+
+    font-size: 14px;
+
+    letter-spacing: 0.03em;
+
+    transition: opacity 0.3s ease;
+}
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.transition-summary {
+    margin-top: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 34px;
+
+    padding: 20px 34px;
+
+    border: 1px solid #d6d0c4;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 30px
+        rgba(45, 40, 30, 0.07);
+}
+
+
+/* =====================================================
+   SUMMARY ITEM
+===================================================== */
+
+.summary-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 7px;
+
+    min-width: 130px;
+}
+
+
+/* =====================================================
+   SUMMARY LABEL
+===================================================== */
+
+.summary-item span {
+
+    color: #3f3b34;
+
+    font-family: var(--font-primary);
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    letter-spacing: 0.17em;
+}
+
+
+/* =====================================================
+   SUMMARY VALUE
+===================================================== */
+
+.summary-item strong {
+
+    max-width: 280px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color: #3f3b34;
+
+    font-family: var(--font-primary);
+
+    font-size: 14px;
+
+    font-weight: 500;
+}
+
+
+/* =====================================================
+   TOPIC
+===================================================== */
+
+.topic-summary {
+
+    min-width: 260px;
+}
+
+
+/* =====================================================
+   DIVIDER
+===================================================== */
+
+.summary-divider {
+
+    width: 1px;
+
+    height: 38px;
+
+    background: #d8d2c6;
+}
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.transition-footer {
+    width: min(100%, 1200px);
+
+    margin: 0 auto;
+
+    padding: 20px 28px;
+
+    border-top: 1px solid #ded9cf;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    color: #8b867c;
+
+    font-family: var(--font-primary);
+
+    font-size: 10px;
+
+    letter-spacing: 0.15em;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .transition-content {
+
+        padding-top: 20px;
+    }
+
+
+    .transition-content h1 {
+
+        font-size:
+            clamp(
+                42px,
+                12vw,
+                60px
+            );
+    }
+
+
+    .transition-summary {
+
+        width: 100%;
+
+        gap: 18px;
+
+        padding:
+            17px 14px;
+    }
+
+
+    .summary-item {
+
+        min-width: 80px;
+    }
+
+
+    .topic-summary {
+
+        min-width: 150px;
+    }
+
+
+    .summary-item strong {
+
+        max-width: 160px;
+
+        font-size: 16px;
+    }
+
+
+    .transition-footer {
+
+        font-size: 9px;
+
+        padding:
+            18px 15px;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .transition-summary {
+
+        gap: 12px;
+
+        padding:
+            15px 10px;
+    }
+
+
+    .summary-divider {
+
+        height: 28px;
+    }
+
+
+    .summary-item {
+
+        min-width: 65px;
+    }
+
+
+    .topic-summary {
+
+        min-width: 120px;
+    }
+
+
+    .summary-item span {
+
+        font-size: 8px;
+    }
+
+
+    .summary-item strong {
+
+        max-width: 120px;
+
+        font-size: 14px;
+    }
+}

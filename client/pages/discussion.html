@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Set up your ConvoSpace discussion."
+    >
+
+    <title>Start Discussion — ConvoSpace</title>
+
+
+    <!-- =========================================
+         GLOBAL CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="../css/global.css"
+    >
+
+
+    <!-- =========================================
+         DISCUSSION CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="../css/discussion.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         PAGE AMBIENCE
+    ========================================== -->
+
+    <div
+        class="discussion-glow discussion-glow-one"
+    ></div>
+
+    <div
+        class="discussion-glow discussion-glow-two"
+    ></div>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="discussion-header">
+
+
+        <!-- Brand -->
+
+        <a
+            href="../index.html"
+            class="discussion-brand"
+        >
+
+            <span class="brand-symbol">
+                C
+            </span>
+
+            <span class="brand-text">
+                CONVO<span>SPACE</span>
+            </span>
+
+        </a>
+
+
+        <!-- Setup progress -->
+
+        <div class="setup-step">
+
+            <span class="step-active">
+                SETUP
+            </span>
+
+            <span class="step-line"></span>
+
+            <span>
+                ARENA
+            </span>
+
+        </div>
+
+
+        <!-- Theme -->
+
+        <button
+            class="discussion-theme"
+            id="themeToggle"
+            type="button"
+            aria-label="Switch theme"
+        >
+
+            <span id="themeIcon">
+                ☼
+            </span>
+
+        </button>
+
+    </header>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="discussion-setup">
+
+
+        <!-- =====================================
+             INTRO
+        ====================================== -->
+
+        <section class="discussion-intro">
+
+            <span class="intro-label">
+                DISCUSSION ARENA
+            </span>
+
+
+            <h1>
+                Start your
+                <em>conversation.</em>
+            </h1>
+
+
+            <p>
+                Choose your people, pick a topic,
+                and decide how the conversation should feel.
+            </p>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SETUP CONTENT
+        ====================================== -->
+
+        <section class="setup-content">
+
+
+            <!-- =================================
+                 01 — PARTICIPANTS
+            ================================== -->
+
+            <article
+                class="setup-section participants-section"
+            >
+
+                <div class="section-top">
+
+                    <div class="section-title">
+
+                        <span class="section-number">
+                            01
+                        </span>
+
+                        <h2>
+                            Participants
+                        </h2>
+
+                    </div>
+
+
+                    <span class="section-note">
+                        INCLUDING YOU
+                    </span>
+
+                </div>
+
+
+                <p class="section-description">
+                    How many voices should be in the room?
+                </p>
+
+
+                <!-- Participant options -->
+
+                <div
+                    class="participant-options"
+                    id="participantOptions"
+                >
+
+
+                    <!-- 2 Participants -->
+
+                    <button
+                        class="participant-option"
+                        type="button"
+                        data-participants="2"
+                    >
+
+                        <span class="participant-count">
+                            2P
+                        </span>
+
+                        <span class="participant-label">
+                            YOU + 1 AI
+                        </span>
+
+                    </button>
+
+
+                    <!-- 3 Participants -->
+
+                    <button
+                        class="participant-option active"
+                        type="button"
+                        data-participants="3"
+                    >
+
+                        <span class="participant-count">
+                            3P
+                        </span>
+
+                        <span class="participant-label">
+                            YOU + 2 AI
+                        </span>
+
+                    </button>
+
+
+                    <!-- 4 Participants -->
+
+                    <button
+                        class="participant-option"
+                        type="button"
+                        data-participants="4"
+                    >
+
+                        <span class="participant-count">
+                            4P
+                        </span>
+
+                        <span class="participant-label">
+                            YOU + 3 AI
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================
+                 02 — TOPIC
+            ================================== -->
+
+            <article
+                class="setup-section topic-section"
+            >
+
+
+                <!-- Section heading -->
+
+                <div class="section-top">
+
+                    <div class="section-title">
+
+                        <span class="section-number">
+                            02
+                        </span>
+
+                        <h2>
+                            Topic
+                        </h2>
+
+                    </div>
+
+
+                    <span
+                        class="section-note selected-note"
+                        id="topicIndicator"
+                    >
+                        SELECTED
+                    </span>
+
+                </div>
+
+
+                <!-- Description -->
+
+                <p class="section-description">
+                    Give the conversation something worth talking about.
+                </p>
+
+
+
+                <!-- =================================
+                     TOPIC OPTIONS
+                ================================== -->
+
+                <div
+                    class="topic-options"
+                    id="topicOptions"
+                >
+
+
+                    <!-- Topic 1 -->
+
+                    <button
+                        class="topic-option"
+                        type="button"
+                    >
+
+                        <span class="topic-text">
+                            Loading topic...
+                        </span>
+
+                        <span class="topic-category">
+                            —
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- Topic 2 -->
+
+                    <button
+                        class="topic-option"
+                        type="button"
+                    >
+
+                        <span class="topic-text">
+                            Loading topic...
+                        </span>
+
+                        <span class="topic-category">
+                            —
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- Topic 3 -->
+
+                    <button
+                        class="topic-option"
+                        type="button"
+                    >
+
+                        <span class="topic-text">
+                            Loading topic...
+                        </span>
+
+                        <span class="topic-category">
+                            —
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- =================================
+                         REFRESH TOPICS
+                    ================================== -->
+
+                    <button
+                        class="refresh-topics-button"
+                        id="refreshTopics"
+                        type="button"
+                        aria-label="Show new topics"
+                        title="Show new topics"
+                    >
+
+                        ↻
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- =================================
+                     MANUAL TOPIC
+                ================================== -->
+
+                <button
+                    class="manual-topic-button"
+                    id="manualTopicButton"
+                    type="button"
+                >
+
+                    <span class="manual-plus">
+                        +
+                    </span>
+
+                    <span>
+                        Choose your own topic
+                    </span>
+
+                </button>
+
+
+
+                <!-- =================================
+                     MANUAL TOPIC AREA
+                ================================== -->
+
+                <div
+                    class="manual-topic-area"
+                    id="manualTopicArea"
+                >
+
+                    <label for="manualTopic">
+                        YOUR TOPIC
+                    </label>
+
+
+                    <textarea
+                        id="manualTopic"
+                        maxlength="150"
+                        rows="2"
+                        placeholder="Write a topic you would like to discuss..."
+                    ></textarea>
+
+
+                    <button
+                        class="apply-topic"
+                        id="applyTopic"
+                        type="button"
+                    >
+                        USE THIS TOPIC
+                    </button>
+
+                </div>
+
+
+
+                <!-- =================================
+                     CURRENT TOPIC
+                ================================== -->
+
+                <div class="current-topic">
+
+                    <span>
+                        CURRENT TOPIC
+                    </span>
+
+
+                    <strong id="selectedTopic">
+                        Loading topic...
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+<!-- =================================
+     03 — PLAYER ROLES
+================================== -->
+
+<article class="setup-section roles-section">
+
+    <div class="section-top">
+
+        <div class="section-title">
+
+            <span class="section-number">
+                03
+            </span>
+
+            <h2>
+                Player Roles
+            </h2>
+
+        </div>
+
+        <span
+            class="section-note"
+            id="roleIndicator"
+        >
+            DEFAULT
+        </span>
+
+    </div>
+
+
+    <p class="section-description">
+        Give each AI a different point of view.
+    </p>
+
+
+    <!-- =================================
+         ROLE MODE
+    ================================== -->
+
+    <div class="role-mode">
+
+        <button
+            class="role-mode-button active"
+            type="button"
+            data-mode="default"
+        >
+            Default roles
+        </button>
+
+
+        <button
+            class="role-mode-button"
+            type="button"
+            data-mode="custom"
+        >
+            Choose roles
+        </button>
+
+    </div>
+
+
+    <!-- =================================
+         DEFAULT ROLES
+    ================================== -->
+
+    <div
+        class="default-roles"
+        id="defaultRoles"
+    >
+
+        <div class="role-item">
+
+            <span class="role-avatar">
+                O
+            </span>
+
+            <div class="role-info">
+
+                <strong>
+                    Optimist
+                </strong>
+
+                <span>
+                    Looks for possibilities
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="role-item">
+
+            <span class="role-avatar">
+                C
+            </span>
+
+            <div class="role-info">
+
+                <strong>
+                    Challenger
+                </strong>
+
+                <span>
+                    Questions your assumptions
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="role-item">
+
+            <span class="role-avatar">
+                A
+            </span>
+
+            <div class="role-info">
+
+                <strong>
+                    Analyst
+                </strong>
+
+                <span>
+                    Focuses on reasoning
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         CHOOSE ROLES
+    ================================== -->
+
+    <div
+        class="custom-roles"
+        id="customRoles"
+    >
+
+        <p class="roles-hint">
+            Choose a different role for each AI.
+        </p>
+
+
+        <!-- AI ROLE 1 -->
+
+        <div class="role-selector">
+
+            <span class="role-selector-number">
+                01
+            </span>
+
+            <select
+                class="role-select"
+                data-role-index="0"
+            >
+
+                <option value="">
+                    Select first role
+                </option>
+
+                <option value="Optimist">
+                    Optimist
+                </option>
+
+                <option value="Challenger">
+                    Challenger
+                </option>
+
+                <option value="Analyst">
+                    Analyst
+                </option>
+
+                <option value="Skeptic">
+                    Skeptic
+                </option>
+
+                <option value="Creative">
+                    Creative
+                </option>
+
+                <option value="Devil's Advocate">
+                    Devil's Advocate
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- AI ROLE 2 -->
+
+        <div class="role-selector">
+
+            <span class="role-selector-number">
+                02
+            </span>
+
+            <select
+                class="role-select"
+                data-role-index="1"
+            >
+
+                <option value="">
+                    Select second role
+                </option>
+
+                <option value="Optimist">
+                    Optimist
+                </option>
+
+                <option value="Challenger">
+                    Challenger
+                </option>
+
+                <option value="Analyst">
+                    Analyst
+                </option>
+
+                <option value="Skeptic">
+                    Skeptic
+                </option>
+
+                <option value="Creative">
+                    Creative
+                </option>
+
+                <option value="Devil's Advocate">
+                    Devil's Advocate
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- AI ROLE 3 -->
+
+        <div class="role-selector">
+
+            <span class="role-selector-number">
+                03
+            </span>
+
+            <select
+                class="role-select"
+                data-role-index="2"
+            >
+
+                <option value="">
+                    Select third role
+                </option>
+
+                <option value="Optimist">
+                    Optimist
+                </option>
+
+                <option value="Challenger">
+                    Challenger
+                </option>
+
+                <option value="Analyst">
+                    Analyst
+                </option>
+
+                <option value="Skeptic">
+                    Skeptic
+                </option>
+
+                <option value="Creative">
+                    Creative
+                </option>
+
+                <option value="Devil's Advocate">
+                    Devil's Advocate
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+</article>
+
+
+        <!-- =====================================
+             SESSION SUMMARY
+        ====================================== -->
+
+        <section class="session-summary">
+
+
+            <!-- Players -->
+
+            <div class="summary-item">
+
+                <span>
+                    PLAYERS
+                </span>
+
+                <strong id="summaryPlayers">
+                    3
+                </strong>
+
+            </div>
+
+
+            <div class="summary-line"></div>
+
+
+            <!-- Topic -->
+
+            <div
+                class="summary-item summary-topic"
+            >
+
+                <span>
+                    TOPIC
+                </span>
+
+                <strong id="summaryTopic">
+                    LOADING...
+                </strong>
+
+            </div>
+
+
+            <div class="summary-line"></div>
+
+
+            <!-- Roles -->
+
+            <div class="summary-item">
+
+                <span>
+                    ROLES
+                </span>
+
+                <strong id="summaryRoles">
+                    DEFAULT
+                </strong>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             ENTER ARENA
+        ====================================== -->
+
+        <section class="enter-arena">
+
+
+            <button
+                class="enter-arena-button"
+                id="enterArena"
+                type="button"
+            >
+
+                <span class="enter-icon">
+                    →
+                </span>
+
+                <span class="enter-text">
+                    ENTER THE ARENA
+                </span>
+
+                <span class="enter-arrow">
+                    ↗
+                </span>
+
+            </button>
+
+
+            <p>
+                Your choices can be changed before the discussion begins.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="discussion-footer">
+
+        <span>
+            CONVOSPACE
+        </span>
+
+        <span>
+            TALK WITHOUT THE PRESSURE
+        </span>
+
+        <span>
+            &copy; 2026
+        </span>
+
+    </footer>
+
+
+
+    <!-- =========================================
+         PAGE SCRIPT
+    ========================================== -->
+
+    <script
+        type="module"
+        src="../js/pages/discussion.js"
+    ></script>
+
+</body>
+
+</html>

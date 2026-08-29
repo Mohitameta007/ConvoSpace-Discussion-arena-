@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="ConvoSpace — Think. Speak. Challenge."
+    >
+
+    <title>ConvoSpace — Discussion Arena</title>
+
+    <link
+        rel="stylesheet"
+        href="./css/global.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./css/home.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =========================================
+         AMBIENT BACKGROUND
+    ========================================== -->
+
+    <div class="ambient ambient-one"></div>
+
+    <div class="ambient ambient-two"></div>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="site-header">
+
+        <a
+            href="#"
+            class="brand"
+            aria-label="ConvoSpace home"
+        >
+
+            <span class="brand-mark">
+                C
+            </span>
+
+            <span class="brand-name">
+                CONVO<span>SPACE</span>
+            </span>
+
+        </a>
+
+
+        <div class="header-center">
+
+            <span class="online-dot"></span>
+
+            <span>
+                SYSTEM ONLINE
+            </span>
+
+        </div>
+
+
+        <div class="header-right">
+
+            <span class="version">
+                v1.0 BETA
+            </span>
+
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch theme"
+            >
+
+                <span
+                    class="theme-icon"
+                    id="themeIcon"
+                >
+                    ☼
+                </span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         MAIN LOBBY
+    ========================================== -->
+
+    <main class="lobby">
+
+
+        <!-- Arena label -->
+
+        <div class="arena-label">
+
+            <span class="ornament-line"></span>
+
+            <span>
+                DISCUSSION ARENA
+            </span>
+
+            <span class="ornament-diamond">
+                ◆
+            </span>
+
+            <span class="ornament-line"></span>
+
+        </div>
+
+
+        <!-- =====================================
+             TITLE
+        ====================================== -->
+
+        <section class="hero">
+
+            <p class="hero-kicker">
+                THINK · SPEAK · CHALLENGE
+            </p>
+
+
+            <h1 class="hero-title">
+                CONVO<span>SPACE</span>
+            </h1>
+
+
+            <div class="hero-divider">
+
+                <span></span>
+
+                <i>◆</i>
+
+                <span></span>
+
+            </div>
+
+
+            <p class="hero-description">
+                A conversation game where your ideas
+                meet different perspectives.
+            </p>
+
+        </section>
+
+
+        <!-- =====================================
+             TOPIC
+        ====================================== -->
+
+        <section class="topic-area">
+
+            <div class="topic-label">
+                TODAY'S TOPIC
+            </div>
+
+
+            <div class="topic-card">
+
+                <button
+                    class="topic-arrow"
+                    id="previousTopic"
+                    type="button"
+                    aria-label="Previous topic"
+                >
+                    ←
+                </button>
+
+
+                <div class="topic-content">
+
+                    <span class="topic-number">
+                        01 / 05
+                    </span>
+
+                    <h2 id="topicTitle">
+                        Should AI replace
+                        traditional education?
+                    </h2>
+
+
+                    <div class="topic-divider">
+
+                        <span></span>
+
+                        <i>◆</i>
+
+                        <span></span>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="topic-arrow"
+                    id="nextTopic"
+                    type="button"
+                    aria-label="Next topic"
+                >
+                    →
+                </button>
+
+            </div>
+
+
+            <div
+                class="topic-dots"
+                id="topicDots"
+            ></div>
+
+        </section>
+
+
+        <!-- =====================================
+             START
+        ====================================== -->
+
+        <section class="start-section">
+
+            <button
+                class="start-button"
+                id="startButton"
+                type="button"
+            >
+
+                <span class="play-icon">
+                    ▶
+                </span>
+
+                <span>
+                    START DISCUSSION
+                </span>
+
+                <span class="start-arrow">
+                    →
+                </span>
+
+            </button>
+
+
+            <div class="secondary-actions">
+
+
+                <button
+                    class="secondary-button"
+                    id="participantsButton"
+                    type="button"
+                >
+
+                    <span class="button-icon">
+                        ♧
+                    </span>
+
+                    <span>
+                        PARTICIPANTS
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="secondary-button"
+                    id="rulesButton"
+                    type="button"
+                >
+
+                    <span class="button-icon">
+                        ◫
+                    </span>
+
+                    <span>
+                        RULES
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <div class="keyboard-hint">
+
+                <span class="keyboard-key">
+                    ENTER
+                </span>
+
+                <span>
+                    to start
+                </span>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="site-footer">
+
+        <span>
+            CONVOSPACE
+        </span>
+
+        <span>
+            TALK WITHOUT THE PRESSURE
+        </span>
+
+        <span>
+            © 2026
+        </span>
+
+    </footer>
+
+
+    <!-- =========================================
+         PARTICIPANTS MODAL
+    ========================================== -->
+
+    <div
+        class="modal-overlay"
+        id="participantsModal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="participantsTitle"
+        >
+
+            <button
+                class="modal-close"
+                type="button"
+                data-close="participantsModal"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+
+            <span class="modal-kicker">
+                THE ARENA
+            </span>
+
+
+            <h2
+                id="participantsTitle"
+                class="modal-title"
+            >
+                Your Participants
+            </h2>
+
+
+            <p class="modal-description">
+                Three different perspectives will join
+                the conversation.
+            </p>
+
+
+            <div class="participant-list">
+
+
+                <div class="participant">
+
+                    <div class="participant-avatar">
+                        O
+                    </div>
+
+                    <div class="participant-info">
+
+                        <strong>
+                            OLIVIA
+                        </strong>
+
+                        <span>
+                            THE OPTIMIST
+                        </span>
+
+                        <p>
+                            Looks for possibilities and
+                            constructive ideas.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="participant">
+
+                    <div class="participant-avatar">
+                        C
+                    </div>
+
+                    <div class="participant-info">
+
+                        <strong>
+                            CHRIS
+                        </strong>
+
+                        <span>
+                            THE CHALLENGER
+                        </span>
+
+                        <p>
+                            Questions assumptions and
+                            challenges your reasoning.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="participant">
+
+                    <div class="participant-avatar">
+                        A
+                    </div>
+
+                    <div class="participant-info">
+
+                        <strong>
+                            ALEX
+                        </strong>
+
+                        <span>
+                            THE ANALYST
+                        </span>
+
+                        <p>
+                            Looks for evidence, balance
+                            and stronger arguments.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         RULES MODAL
+    ========================================== -->
+
+    <div
+        class="modal-overlay"
+        id="rulesModal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal rules-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="rulesTitle"
+        >
+
+            <button
+                class="modal-close"
+                type="button"
+                data-close="rulesModal"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+
+            <span class="modal-kicker">
+                BEFORE YOU ENTER
+            </span>
+
+
+            <h2
+                id="rulesTitle"
+                class="modal-title"
+            >
+                Rules of the Arena
+            </h2>
+
+
+            <div class="rules-list">
+
+
+                <div class="rule-item">
+
+                    <span>
+                        I
+                    </span>
+
+                    <p>
+                        Share your thoughts clearly.
+                    </p>
+
+                </div>
+
+
+                <div class="rule-item">
+
+                    <span>
+                        II
+                    </span>
+
+                    <p>
+                        Listen to opposing perspectives.
+                    </p>
+
+                </div>
+
+
+                <div class="rule-item">
+
+                    <span>
+                        III
+                    </span>
+
+                    <p>
+                        Defend your reasoning when challenged.
+                    </p>
+
+                </div>
+
+
+                <div class="rule-item">
+
+                    <span>
+                        IV
+                    </span>
+
+                    <p>
+                        Stay respectful. There are no wrong
+                        opinions, only weak arguments.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="./js/pages/home.js"></script>
+
+</body>
+
+</html>

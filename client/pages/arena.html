@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Discussion Arena | ConvoSpace</title>
+
+
+    <!-- =========================================
+         GLOBAL CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="../css/global.css"
+    >
+
+
+    <!-- =========================================
+         ARENA CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="../css/arena.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <main class="arena-page">
+
+
+        <!-- =========================================
+             HEADER
+        ========================================== -->
+
+        <header class="arena-header">
+
+
+            <!-- BRAND -->
+
+            <div class="arena-brand">
+
+                <div class="arena-brand-mark">
+                    C
+                </div>
+
+                <div class="arena-brand-name">
+                    CONVO<span>SPACE</span>
+                </div>
+
+            </div>
+
+
+            <!-- HEADER CENTER -->
+
+            <div class="arena-header-center">
+
+                <span class="arena-label">
+                    DISCUSSION ARENA
+                </span>
+
+                <h1 id="arenaTopic">
+                    Discussion
+                </h1>
+
+            </div>
+
+
+            <!-- LEAVE -->
+
+            <button
+                class="leave-button"
+                id="leaveArena"
+                type="button"
+            >
+                Leave
+            </button>
+
+
+        </header>
+
+
+
+        <!-- =========================================
+             ARENA BODY
+        ========================================== -->
+
+        <section class="arena-body">
+
+
+            <!-- =====================================
+                 LEFT SIDEBAR
+            ====================================== -->
+
+            <aside class="arena-sidebar">
+
+
+                <!-- =================================
+                     PLAYERS PANEL
+                ================================== -->
+
+                <section class="participants-panel">
+
+
+                    <div class="panel-heading">
+
+                        <span>
+                            PLAYERS
+                        </span>
+
+                        <strong id="arenaPlayerCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div
+                        class="participants-list"
+                        id="participantsList"
+                    >
+
+                        <!--
+                            Players will be added
+                            dynamically by JavaScript.
+                        -->
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================
+                     DISCUSSION LEAD PANEL
+                ================================== -->
+
+                <section class="moderator-panel">
+
+
+                    <div class="moderator-header">
+
+                        <span class="panel-label">
+                            DISCUSSION LEAD
+                        </span>
+
+                    </div>
+
+
+                    <div class="moderator-content">
+
+
+                        <div class="moderator-mark">
+                            C
+                        </div>
+
+
+                        <div class="moderator-info">
+
+                            <strong>
+                                Arena Guide
+                            </strong>
+
+                            <span>
+                                Discussion Lead
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <p class="moderator-message">
+                        Your discussion will be guided
+                        throughout the session.
+                    </p>
+
+
+                </section>
+
+
+
+                <!-- =================================
+                     TIMER PANEL
+                ================================== -->
+
+                <section class="timer-panel">
+
+
+                    <div class="timer-header">
+
+                        <span class="panel-label">
+                            DISCUSSION TIMER
+                        </span>
+
+                    </div>
+
+
+                    <!-- TIMER DISPLAY -->
+
+                    <div
+                        class="timer-display"
+                        id="timerDisplay"
+                    >
+                        00:00
+                    </div>
+
+
+                    <!-- SET TIMER -->
+
+                    <div class="timer-setting">
+
+
+                        <label
+                            for="timerMinutes"
+                            class="timer-label"
+                        >
+                            SET TIME
+                        </label>
+
+
+                        <div class="timer-input-row">
+
+                            <input
+                                type="number"
+                                id="timerMinutes"
+                                class="timer-input"
+                                min="1"
+                                max="180"
+                                placeholder="Minutes"
+                            >
+
+
+                            <span class="timer-unit">
+                                min
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- TIMER ACTIONS -->
+
+                    <div class="timer-actions">
+
+
+                        <button
+                            type="button"
+                            id="startTimer"
+                            class="timer-button timer-start"
+                        >
+                            Start
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="resetTimer"
+                            class="timer-button timer-reset"
+                        >
+                            Reset
+                        </button>
+
+
+                    </div>
+
+
+                </section>
+
+
+            </aside>
+
+
+
+            <!-- =====================================
+                 CENTER : CONVERSATION
+            ====================================== -->
+
+            <section class="conversation-panel">
+
+
+                <!-- =================================
+                     MESSAGES
+                ================================== -->
+
+                <div
+                    class="messages-container"
+                    id="messagesContainer"
+                >
+
+                    <!--
+                        Messages will appear here.
+
+                        Example:
+                        - User messages
+                        - Other player messages
+                        - Discussion lead instructions
+                    -->
+
+                </div>
+
+
+
+                <!-- =================================
+                     MESSAGE COMPOSER
+                ================================== -->
+
+                <div class="message-composer">
+
+
+                    <textarea
+                        id="messageInput"
+                        placeholder="Share your perspective..."
+                        rows="1"
+                    ></textarea>
+
+
+                    <button
+                        id="sendMessage"
+                        class="send-button"
+                        type="button"
+                    >
+
+                        <span>
+                            Send
+                        </span>
+
+                        <span class="send-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =====================================
+                 RIGHT : DISCUSSION INFO
+            ====================================== -->
+
+            <aside class="info-panel">
+
+
+                <!-- SESSION -->
+
+                <div class="info-section">
+
+
+                    <span class="info-label">
+                        SESSION
+                    </span>
+
+
+                    <h3>
+                        Open Discussion
+                    </h3>
+
+
+                    <p>
+                        Everyone gets a chance
+                        to speak and respond.
+                    </p>
+
+
+                </div>
+
+
+
+                <div class="info-divider"></div>
+
+
+
+                <!-- FORMAT -->
+
+                <div class="info-section">
+
+
+                    <span class="info-label">
+                        FORMAT
+                    </span>
+
+
+                    <div class="format-row">
+
+                        <span class="format-dot"></span>
+
+                        <span>
+                            Conversational
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="info-divider"></div>
+
+
+
+                <!-- YOUR ROLE -->
+
+                <div class="info-section">
+
+
+                    <span class="info-label">
+                        YOUR ROLE
+                    </span>
+
+
+                    <h3 id="yourRole">
+                        Participant
+                    </h3>
+
+
+                </div>
+
+
+            </aside>
+
+
+        </section>
+
+
+
+        <!-- =========================================
+             FOOTER
+        ========================================== -->
+
+        <footer class="arena-footer">
+
+
+            <span>
+                CONVOSPACE
+            </span>
+
+
+            <span>
+                TALK WITHOUT THE PRESSURE
+            </span>
+
+
+            <span>
+                © 2026
+            </span>
+
+
+        </footer>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         ARENA JAVASCRIPT
+    ========================================== -->
+
+    <script src="../js/pages/arena.js"></script>
+
+
+</body>
+
+</html>
