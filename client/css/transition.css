@@ -1,5 +1,5 @@
 /* =====================================================
-   TRANSITION PAGE — LIGHT THEME
+   TRANSITION PAGE
 ===================================================== */
 
 .transition-page {
@@ -11,8 +11,12 @@
     position: relative;
     overflow: hidden;
 
-    background: #f8f6f1;
-    color: #24231f;
+    background: var(--color-bg);
+    color: var(--color-text);
+
+    transition:
+        background-color var(--transition-normal),
+        color var(--transition-normal);
 }
 
 
@@ -48,10 +52,10 @@
     display: grid;
     place-items: center;
 
-    border: 1px solid #d8d2c5;
+    border: 1px solid var(--color-border);
     border-radius: 50%;
 
-    color: #b88d3f;
+    color: var(--color-accent);
 
     font-family: var(--font-heading);
     font-size: 18px;
@@ -59,7 +63,7 @@
 
 
 .brand-name {
-    color: #24231f;
+    color: var(--color-text);
 
     font-family: var(--font-primary);
 
@@ -71,7 +75,7 @@
 
 
 .brand-name span {
-    color: #b88d3f;
+    color: var(--color-accent);
 }
 
 
@@ -108,7 +112,7 @@
 .transition-label {
     margin-bottom: 20px;
 
-    color: #b88d3f;
+    color: var(--color-accent);
 
     font-family: var(--font-primary);
 
@@ -128,7 +132,7 @@
 
     max-width: 760px;
 
-    color: #24231f;
+    color: var(--color-text);
 
     font-family: var(--font-heading);
 
@@ -147,7 +151,7 @@
 
 
 .transition-content h1 em {
-    color: #b88d3f;
+    color: var(--color-accent);
 
     font-style: italic;
 }
@@ -162,7 +166,7 @@
 
     margin: 25px 0 0;
 
-    color: #77736a;
+    color: var(--color-text-secondary);
 
     font-family: var(--font-primary);
 
@@ -196,7 +200,7 @@
 
     border-radius: 50%;
 
-    background: #b88d3f;
+    background: var(--color-accent);
 
     animation:
         arenaPulse
@@ -249,7 +253,7 @@
 
     min-height: 22px;
 
-    color: #77736a;
+    color: var(--color-text-secondary);
 
     font-family: var(--font-primary);
 
@@ -259,6 +263,7 @@
 
     transition: opacity 0.3s ease;
 }
+
 
 /* =====================================================
    SUMMARY
@@ -276,15 +281,13 @@
 
     padding: 20px 34px;
 
-    border: 1px solid #d6d0c4;
+    border: 1px solid var(--color-border);
 
-    border-radius: 14px;
+    border-radius: var(--radius-md);
 
-    background: #ffffff;
+    background: var(--color-surface);
 
-    box-shadow:
-        0 10px 30px
-        rgba(45, 40, 30, 0.07);
+    box-shadow: var(--shadow-soft);
 }
 
 
@@ -312,7 +315,7 @@
 
 .summary-item span {
 
-    color: #3f3b34;
+    color: var(--color-text-secondary);
 
     font-family: var(--font-primary);
 
@@ -338,7 +341,7 @@
 
     white-space: nowrap;
 
-    color: #3f3b34;
+    color: var(--color-text);
 
     font-family: var(--font-primary);
 
@@ -368,20 +371,23 @@
 
     height: 38px;
 
-    background: #d8d2c6;
+    background: var(--color-border);
 }
+
+
 /* =====================================================
    FOOTER
 ===================================================== */
 
 .transition-footer {
+
     width: min(100%, 1200px);
 
     margin: 0 auto;
 
     padding: 20px 28px;
 
-    border-top: 1px solid #ded9cf;
+    border-top: 1px solid var(--color-border);
 
     display: flex;
 
@@ -389,7 +395,7 @@
 
     justify-content: space-between;
 
-    color: #8b867c;
+    color: var(--color-text-muted);
 
     font-family: var(--font-primary);
 
@@ -397,6 +403,7 @@
 
     letter-spacing: 0.15em;
 }
+
 
 /* =====================================================
    RESPONSIVE

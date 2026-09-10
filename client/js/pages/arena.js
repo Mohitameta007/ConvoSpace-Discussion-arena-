@@ -2,6 +2,115 @@
    CONVOSPACE — DISCUSSION ARENA
 ===================================================== */
 
+/* =====================================================
+   THEME
+===================================================== */
+
+function initializeTheme() {
+
+    const themeToggle =
+        document.getElementById("themeToggle");
+
+    const themeIcon =
+        document.getElementById("themeIcon");
+
+
+    function updateThemeIcon() {
+
+        const isLight =
+            document.body.classList.contains(
+                "light-theme"
+            );
+
+        if (themeIcon) {
+
+            themeIcon.textContent =
+                isLight
+                    ? "☾"
+                    : "☼";
+
+        }
+
+    }
+
+
+    /* ---------------------------------------------
+       LOAD SAVED THEME
+    --------------------------------------------- */
+
+    const savedTheme =
+        localStorage.getItem(
+            "convospace-theme"
+        );
+
+
+    if (savedTheme === "light") {
+
+        document.body.classList.add(
+            "light-theme"
+        );
+
+    } else {
+
+        document.body.classList.remove(
+            "light-theme"
+        );
+
+    }
+
+
+    updateThemeIcon();
+
+
+    /* ---------------------------------------------
+       THEME BUTTON
+    --------------------------------------------- */
+
+    if (themeToggle) {
+
+        themeToggle.addEventListener(
+            "click",
+            () => {
+
+                document.body.classList.toggle(
+                    "light-theme"
+                );
+
+
+                const isLight =
+                    document.body.classList.contains(
+                        "light-theme"
+                    );
+
+
+                localStorage.setItem(
+                    "convospace-theme",
+                    isLight
+                        ? "light"
+                        : "dark"
+                );
+
+
+                updateThemeIcon();
+
+            }
+        );
+
+    }
+
+}
+
+/* =====================================================
+   LOAD SAVED THEME
+===================================================== */
+
+const savedTheme = localStorage.getItem("convospace-theme");
+
+if (savedTheme === "light") {
+    document.body.classList.add("light-theme");
+} else {
+    document.body.classList.remove("light-theme");
+}
 
 /* =====================================================
    ARENA STATE
@@ -960,22 +1069,34 @@ function handleEscapeKey(event) {
 /* =====================================================
    INITIALIZE ARENA
 ===================================================== */
-
 function initializeArena() {
 
-    /* Load discussion setup */
+    /* =================================================
+       LOAD SAVED THEME
+    ================================================= */
+
+    initializeTheme();
+
+
+    /* =================================================
+       LOAD DISCUSSION SETUP
+    ================================================= */
 
     loadArenaData();
 
 
-    /* Discussion initially stopped */
+    /* =================================================
+       DISCUSSION INITIALLY STOPPED
+    ================================================= */
 
     setDiscussionState(
         false
     );
 
 
-    /* Initial timer */
+    /* =================================================
+       INITIAL TIMER
+    ================================================= */
 
     remainingSeconds =
         0;

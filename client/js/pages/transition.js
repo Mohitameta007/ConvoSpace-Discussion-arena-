@@ -3,6 +3,20 @@
 ===================================================== */
 
 
+function applySavedTheme() {
+
+    const savedTheme = localStorage.getItem("convospace-theme");
+
+    if (savedTheme === "light") {
+        document.body.classList.add("light-theme");
+    } else {
+        document.body.classList.remove("light-theme");
+    }
+}
+
+applySavedTheme();
+
+
 /* =====================================================
    INITIALIZE TRANSITION PAGE
 ===================================================== */

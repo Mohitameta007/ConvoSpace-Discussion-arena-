@@ -78,25 +78,6 @@ body.light-theme {
     --shadow-accent-strong: 0 18px 42px rgba(180, 135, 63, 0.28);
 }
 
-/* The live arena is intentionally presented in the light scheme. */
-.arena-page {
-    --color-bg: #f7f5ef;
-    --color-bg-secondary: #efede6;
-    --color-surface: #ffffff;
-    --color-surface-hover: #f3f0e8;
-    --color-text: #292721;
-    --color-text-secondary: #5f5a50;
-    --color-text-muted: #777168;
-    --color-accent: #b4873f;
-    --color-accent-light: #c9a45f;
-    --color-accent-soft: rgba(180, 135, 63, 0.1);
-    --color-border: rgba(55, 48, 38, 0.15);
-    --color-border-soft: rgba(55, 48, 38, 0.08);
-    --button-text: #ffffff;
-    --shadow-soft: 0 14px 40px rgba(41, 39, 33, 0.1);
-    --shadow-accent: 0 12px 30px rgba(180, 135, 63, 0.2);
-    --shadow-accent-strong: 0 18px 42px rgba(180, 135, 63, 0.28);
-}
 
 *,
 *::before,
