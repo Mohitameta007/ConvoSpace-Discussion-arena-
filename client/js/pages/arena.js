@@ -1,402 +1,1112 @@
+/* =====================================================
+   CONVOSPACE — DISCUSSION ARENA
+===================================================== */
 
 
 /* =====================================================
-   ARENA PAGE
+   ARENA STATE
 ===================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+let timerInterval = null;
+let remainingSeconds = 0;
+let discussionStarted = false;
 
 
-    /* =================================
-       GET DISCUSSION SETUP
-    ================================= */
+/* =====================================================
+   ELEMENTS
+===================================================== */
 
-    const savedSetup =
-        sessionStorage.getItem("discussionSetup");
+const arenaTopic =
+    document.getElementById("arenaTopic");
+
+const arenaPlayerCount =
+    document.getElementById("arenaPlayerCount");
+
+const participantsList =
+    document.getElementById("participantsList");
+
+const timerDisplay =
+    document.getElementById("timerDisplay");
+
+const timerMinutes =
+    document.getElementById("timerMinutes");
+
+const startTimer =
+    document.getElementById("startTimer");
+
+const resetTimer =
+    document.getElementById("resetTimer");
+
+const messageInput =
+    document.getElementById("messageInput");
+
+const sendMessage =
+    document.getElementById("sendMessage");
+
+const messagesContainer =
+    document.getElementById("messagesContainer");
+
+const yourRole =
+    document.getElementById("yourRole");
+
+const leaveArena =
+    document.getElementById("leaveArena");
 
 
-    if (!savedSetup) {
+/* =====================================================
+   LEAVE MODAL ELEMENTS
+===================================================== */
 
-        window.location.href =
-            "discussion.html";
+const leaveModal =
+    document.getElementById("leaveModal");
+
+const cancelLeave =
+    document.getElementById("cancelLeave");
+
+const confirmLeave =
+    document.getElementById("confirmLeave");
+
+
+/* =====================================================
+   DISCUSSION SETUP
+===================================================== */
+
+function getDiscussionSetup() {
+
+    /*
+        discussion.html saves the setup using
+        "discussionSetup".
+    */
+
+    const savedDiscussion =
+        sessionStorage.getItem(
+            "discussionSetup"
+        );
+
+    if (!savedDiscussion) {
+        return null;
+    }
+
+    try {
+
+        return JSON.parse(
+            savedDiscussion
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Unable to read discussion setup:",
+            error
+        );
+
+        return null;
+    }
+}
+
+
+/* =====================================================
+   LOAD ARENA DATA
+===================================================== */
+
+function loadArenaData() {
+
+    const discussion =
+        getDiscussionSetup();
+
+    if (!discussion) {
+
+        console.warn(
+            "No discussion setup found."
+        );
 
         return;
-
     }
 
 
-    const setup =
-        JSON.parse(savedSetup);
+    /* Topic */
 
+    if (arenaTopic) {
 
-    /* =================================
-       GET ELEMENTS
-    ================================= */
-
-    const arenaTopic =
-        document.getElementById("arenaTopic");
-
-    const conversationTopic =
-        document.getElementById("conversationTopic");
-
-    const arenaPlayerCount =
-        document.getElementById("arenaPlayerCount");
-
-    const participantsList =
-        document.getElementById("participantsList");
-
-    const messagesContainer =
-        document.getElementById("messagesContainer");
-
-    const messageInput =
-        document.getElementById("messageInput");
-
-    const sendMessage =
-        document.getElementById("sendMessage");
-
-    const leaveArena =
-        document.getElementById("leaveArena");
-
-    const yourRole =
-        document.getElementById("yourRole");
-
-
-    /* =================================
-       TOPIC
-    ================================= */
-
-    const topic =
-        setup.topic || "Open Discussion";
-
-
-    arenaTopic.textContent =
-        topic;
-
-
-    conversationTopic.textContent =
-        topic;
-
-
-    /* =================================
-       PLAYERS
-    ================================= */
-
-    const totalPlayers =
-        Number(setup.participants) || 1;
-
-
-    arenaPlayerCount.textContent =
-        totalPlayers;
-
-
-    /* =================================
-       CREATE PARTICIPANTS
-    ================================= */
-
-    renderParticipants(
-        totalPlayers,
-        setup
-    );
-
-
-    /* =================================
-       USER ROLE
-    ================================= */
-
-    if (
-        setup.roleMode === "custom" &&
-        setup.roles &&
-        setup.roles.length > 0
-    ) {
-
-        yourRole.textContent =
-            "Participant";
-
+        arenaTopic.textContent =
+            discussion.topic ||
+            "Discussion";
     }
 
 
-    /* =================================
-       SEND MESSAGE
-    ================================= */
+    /* Players */
 
-    sendMessage.addEventListener(
-        "click",
-        handleSendMessage
-    );
+    const playerCount =
+        Number(
+            discussion.participants
+        ) || 1;
 
 
-    messageInput.addEventListener(
-        "keydown",
-        (event) => {
+    if (arenaPlayerCount) {
 
-            if (
-                event.key === "Enter" &&
-                !event.shiftKey
-            ) {
-
-                event.preventDefault();
-
-                handleSendMessage();
-
-            }
-
-        }
-    );
-
-
-    /* =================================
-       LEAVE ARENA
-    ================================= */
-
-    leaveArena.addEventListener(
-        "click",
-        () => {
-
-            const confirmLeave =
-                confirm(
-                    "Leave this discussion?"
-                );
-
-
-            if (confirmLeave) {
-
-                sessionStorage.removeItem(
-                    "discussionSetup"
-                );
-
-                window.location.href =
-                    "discussion.html";
-
-            }
-
-        }
-    );
-
-
-    /* =================================
-       SEND MESSAGE FUNCTION
-    ================================= */
-
-    function handleSendMessage() {
-
-        const text =
-            messageInput.value.trim();
-
-
-        if (!text) {
-            return;
-        }
-
-
-        /* Remove welcome message */
-
-        const welcome =
-            messagesContainer.querySelector(
-                ".welcome-message"
-            );
-
-
-        if (welcome) {
-            welcome.remove();
-        }
-
-
-        addMessage(
-            "You",
-            text,
-            true
-        );
-
-
-        messageInput.value = "";
-
-
-        /*
-            AI/backend response
-            will be connected later.
-        */
-
+        arenaPlayerCount.textContent =
+            playerCount;
     }
 
 
-    /* =================================
-       ADD MESSAGE
-    ================================= */
+    /* Participants */
 
-    function addMessage(
-        name,
-        text,
-        isUser = false
-    ) {
-
-        const message =
-            document.createElement("div");
-
-
-        message.className =
-            "chat-message";
-
-
-        if (isUser) {
-
-            message.classList.add(
-                "user"
-            );
-
-        }
-
-
-        message.innerHTML = `
-
-            <div class="message-avatar">
-                ${name.charAt(0)}
-            </div>
-
-            <div class="message-content">
-
-                <span class="message-name">
-                    ${name}
-                </span>
-
-                <div class="message-text">
-                    ${escapeHTML(text)}
-                </div>
-
-            </div>
-
-        `;
-
-
-        messagesContainer.appendChild(
-            message
-        );
-
-
-        messagesContainer.scrollTop =
-            messagesContainer.scrollHeight;
-
-    }
-
-
-    /* =================================
-       PARTICIPANTS
-    ================================= */
-
-    function renderParticipants(
-        count,
-        setup
-    ) {
+    if (participantsList) {
 
         participantsList.innerHTML = "";
 
 
-        /*
-            First participant = You
-        */
+        /* User */
 
-        createParticipant(
+        addParticipant(
             "You",
             "Participant",
             true
         );
 
 
-        /*
-            Remaining participants
-            are AI for now.
-        */
+        /* AI Players */
+
+        const roles =
+            Array.isArray(
+                discussion.roles
+            )
+                ? discussion.roles
+                : [];
+
 
         for (
-            let i = 1;
-            i < count;
-            i++
+            let index = 0;
+            index < playerCount - 1;
+            index++
         ) {
 
-            let role =
-                "Perspective";
-
-            if (
-                setup.roles &&
-                setup.roles[i - 1]
-            ) {
-
-                role =
-                    setup.roles[i - 1];
-
-            }
+            const role =
+                roles[index] ||
+                `Player ${index + 2}`;
 
 
-            createParticipant(
-                `Player ${i + 1}`,
+            addParticipant(
+                `Player ${index + 2}`,
                 role,
                 false
             );
-
         }
-
     }
 
 
-    /* =================================
-       CREATE PARTICIPANT
-    ================================= */
+    /* Your role */
 
-    function createParticipant(
-        name,
-        role,
+    if (yourRole) {
+
+        yourRole.textContent =
+            "Participant";
+    }
+}
+
+
+/* =====================================================
+   ADD PARTICIPANT
+===================================================== */
+
+function addParticipant(
+    name,
+    role,
+    isUser
+) {
+
+    const participant =
+        document.createElement("div");
+
+    participant.className =
+        "participant";
+
+
+    const avatar =
+        document.createElement("div");
+
+    avatar.className =
+        "participant-avatar";
+
+    avatar.textContent =
         isUser
-    ) {
-
-        const element =
-            document.createElement("div");
-
-
-        element.className =
-            "participant";
+            ? "Y"
+            : name.charAt(
+                name.length - 1
+            );
 
 
-        element.innerHTML = `
+    const info =
+        document.createElement("div");
 
-            <div class="participant-avatar">
-                ${name.charAt(0)}
-            </div>
-
-            <div class="participant-info">
-
-                <span class="participant-name">
-                    ${name}
-                </span>
-
-                <span class="participant-role">
-                    ${role}
-                </span>
-
-            </div>
-
-        `;
+    info.className =
+        "participant-info";
 
 
-        participantsList.appendChild(
-            element
+    const participantName =
+        document.createElement("span");
+
+    participantName.className =
+        "participant-name";
+
+    participantName.textContent =
+        name;
+
+
+    const participantRole =
+        document.createElement("span");
+
+    participantRole.className =
+        "participant-role";
+
+    participantRole.textContent =
+        role;
+
+
+    info.appendChild(
+        participantName
+    );
+
+    info.appendChild(
+        participantRole
+    );
+
+
+    participant.appendChild(
+        avatar
+    );
+
+    participant.appendChild(
+        info
+    );
+
+
+    participantsList.appendChild(
+        participant
+    );
+}
+
+
+/* =====================================================
+   TIMER DISPLAY
+===================================================== */
+
+function updateTimerDisplay() {
+
+    if (!timerDisplay) {
+        return;
+    }
+
+
+    const minutes =
+        Math.floor(
+            remainingSeconds / 60
         );
 
+
+    const seconds =
+        remainingSeconds % 60;
+
+
+    timerDisplay.textContent =
+        `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
+
+
+/* =====================================================
+   ENABLE / DISABLE DISCUSSION
+===================================================== */
+
+function setDiscussionState(started) {
+
+    discussionStarted =
+        started;
+
+
+    if (messageInput) {
+
+        /*
+            Keep textarea clickable even when
+            discussion has not started.
+
+            This allows the timer reminder popup
+            to appear.
+        */
+
+        messageInput.disabled = false;
+
+
+        if (!started) {
+
+            messageInput.classList.add(
+                "chat-disabled"
+            );
+
+        } else {
+
+            messageInput.classList.remove(
+                "chat-disabled"
+            );
+        }
     }
 
 
-    /* =================================
-       ESCAPE HTML
-    ================================= */
+    if (sendMessage) {
 
-    function escapeHTML(text) {
+        sendMessage.disabled =
+            !started;
+    }
+}
 
-        const div =
-            document.createElement("div");
 
-        div.textContent =
-            text;
+/* =====================================================
+   TIMER REMINDER
+===================================================== */
 
-        return div.innerHTML;
+function showTimerReminder() {
 
+    const existingReminder =
+        document.querySelector(
+            ".timer-reminder"
+        );
+
+
+    if (existingReminder) {
+        existingReminder.remove();
     }
 
-});
+
+    const reminder =
+        document.createElement("div");
+
+
+    reminder.className =
+        "timer-reminder";
+
+
+    reminder.innerHTML = `
+        <strong>Start the timer first</strong>
+        <span>Set the discussion time and start the timer before sending a message.</span>
+    `;
+
+
+    document.body.appendChild(
+        reminder
+    );
+
+
+    setTimeout(() => {
+
+        reminder.classList.add(
+            "show"
+        );
+
+    }, 10);
+
+
+    setTimeout(() => {
+
+        reminder.classList.remove(
+            "show"
+        );
+
+
+        setTimeout(() => {
+
+            if (reminder.parentNode) {
+                reminder.remove();
+            }
+
+        }, 260);
+
+    }, 3000);
+}
+
+
+/* =====================================================
+   ADD MESSAGE
+===================================================== */
+
+function addMessage(
+    name,
+    text,
+    type = "lead"
+) {
+
+    if (!messagesContainer) {
+        return;
+    }
+
+
+    const previousMessage =
+        messagesContainer.lastElementChild;
+
+
+    const sameSender =
+        previousMessage &&
+        previousMessage.dataset.sender === name &&
+        previousMessage.dataset.type === type;
+
+
+    const message =
+        document.createElement("div");
+
+
+    message.className =
+        "chat-message";
+
+
+    message.dataset.sender =
+        name;
+
+    message.dataset.type =
+        type;
+
+
+    if (type === "user") {
+
+        message.classList.add(
+            "user"
+        );
+    }
+
+
+    const avatar =
+        document.createElement("div");
+
+
+    avatar.className =
+        "message-avatar";
+
+
+    avatar.textContent =
+        type === "user"
+            ? "Y"
+            : "C";
+
+
+    const content =
+        document.createElement("div");
+
+
+    content.className =
+        "message-content";
+
+
+    const nameElement =
+        document.createElement("span");
+
+
+    nameElement.className =
+        "message-name";
+
+
+    nameElement.textContent =
+        name;
+
+
+    const textElement =
+        document.createElement("div");
+
+
+    textElement.className =
+        "message-text";
+
+
+    textElement.textContent =
+        text;
+
+
+    /*
+        Same person continuously messaging:
+        hide repeated name and avatar.
+    */
+
+    if (sameSender) {
+
+        message.classList.add(
+            "continued"
+        );
+    }
+
+
+    content.appendChild(
+        nameElement
+    );
+
+    content.appendChild(
+        textElement
+    );
+
+
+    message.appendChild(
+        avatar
+    );
+
+    message.appendChild(
+        content
+    );
+
+
+    messagesContainer.appendChild(
+        message
+    );
+
+
+    messagesContainer.scrollTop =
+        messagesContainer.scrollHeight;
+}
+
+
+/* =====================================================
+   START DISCUSSION
+===================================================== */
+
+function startDiscussion() {
+
+    const minutes =
+        Number(
+            timerMinutes?.value
+        );
+
+
+    /* Validate timer */
+
+    if (
+        !Number.isFinite(minutes) ||
+        minutes < 1 ||
+        minutes > 180
+    ) {
+
+        alert(
+            "Please enter a time between 1 and 180 minutes."
+        );
+
+
+        timerMinutes?.focus();
+
+
+        return;
+    }
+
+
+    /* Stop any previous timer */
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    timerInterval =
+        null;
+
+
+    /* Convert minutes to seconds */
+
+    remainingSeconds =
+        Math.floor(
+            minutes * 60
+        );
+
+
+    updateTimerDisplay();
+
+
+    /* Start discussion */
+
+    setDiscussionState(
+        true
+    );
+
+
+    /* Disable timer input */
+
+    if (timerMinutes) {
+
+        timerMinutes.disabled =
+            true;
+    }
+
+
+    /* Disable start button */
+
+    if (startTimer) {
+
+        startTimer.disabled =
+            true;
+
+        startTimer.textContent =
+            "Running";
+    }
+
+
+    /* Lead message */
+
+    addMessage(
+        "Arena Guide",
+        "Your time begins. Share your perspective and respond to the discussion."
+    );
+
+
+    /* Start countdown */
+
+    timerInterval =
+        setInterval(() => {
+
+            remainingSeconds--;
+
+            updateTimerDisplay();
+
+
+            if (
+                remainingSeconds <= 0
+            ) {
+
+                finishDiscussion();
+            }
+
+        }, 1000);
+}
+
+
+/* =====================================================
+   FINISH DISCUSSION
+===================================================== */
+
+function finishDiscussion() {
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    timerInterval =
+        null;
+
+
+    remainingSeconds =
+        0;
+
+
+    updateTimerDisplay();
+
+
+    setDiscussionState(
+        false
+    );
+
+
+    if (timerMinutes) {
+
+        timerMinutes.disabled =
+            false;
+    }
+
+
+    if (startTimer) {
+
+        startTimer.disabled =
+            false;
+
+        startTimer.textContent =
+            "Start";
+    }
+
+
+    addMessage(
+        "Arena Guide",
+        "Time is up. The discussion has ended."
+    );
+}
+
+
+/* =====================================================
+   RESET DISCUSSION
+===================================================== */
+
+function resetDiscussion() {
+
+    /*
+        Stop timer.
+    */
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    timerInterval =
+        null;
+
+
+    /*
+        Reset timer to zero.
+    */
+
+    remainingSeconds =
+        0;
+
+
+    updateTimerDisplay();
+
+
+    /*
+        Stop chat.
+    */
+
+    setDiscussionState(
+        false
+    );
+
+
+    /*
+        Enable timer input.
+    */
+
+    if (timerMinutes) {
+
+        timerMinutes.disabled =
+            false;
+    }
+
+
+    /*
+        Reset Start button.
+    */
+
+    if (startTimer) {
+
+        startTimer.disabled =
+            false;
+
+        startTimer.textContent =
+            "Start";
+    }
+}
+
+
+/* =====================================================
+   SEND USER MESSAGE
+===================================================== */
+
+function sendUserMessage() {
+
+    if (!discussionStarted) {
+
+        showTimerReminder();
+
+        return;
+    }
+
+
+    if (!messageInput) {
+        return;
+    }
+
+
+    const text =
+        messageInput.value.trim();
+
+
+    if (!text) {
+        return;
+    }
+
+
+    addMessage(
+        "You",
+        text,
+        "user"
+    );
+
+
+    messageInput.value =
+        "";
+
+
+    messageInput.focus();
+}
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+function handleMessageKeydown(
+    event
+) {
+
+    /*
+        Enter = send
+        Shift + Enter = new line
+    */
+
+    if (
+        event.key === "Enter" &&
+        !event.shiftKey
+    ) {
+
+        event.preventDefault();
+
+        sendUserMessage();
+    }
+}
+
+
+/* =====================================================
+   LEAVE DISCUSSION
+===================================================== */
+
+function leaveDiscussion() {
+
+    /*
+        Do not leave immediately.
+        Show confirmation modal first.
+    */
+
+    if (leaveModal) {
+
+        leaveModal.classList.add(
+            "show"
+        );
+    }
+}
+
+
+/* =====================================================
+   CANCEL LEAVE
+===================================================== */
+
+function cancelLeaving() {
+
+    if (leaveModal) {
+
+        leaveModal.classList.remove(
+            "show"
+        );
+    }
+}
+
+
+/* =====================================================
+   CONFIRM LEAVE
+===================================================== */
+
+function confirmLeaving() {
+
+    /*
+        Stop timer.
+    */
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    timerInterval =
+        null;
+
+
+    /*
+        Clear discussion session.
+    */
+
+    sessionStorage.removeItem(
+        "discussionSetup"
+    );
+
+
+    /*
+        Return to home page.
+    */
+
+    window.location.href =
+        "../index.html";
+}
+
+
+/* =====================================================
+   CLOSE MODAL ON BACKDROP CLICK
+===================================================== */
+
+function handleModalClick(event) {
+
+    if (
+        event.target === leaveModal
+    ) {
+
+        cancelLeaving();
+    }
+}
+
+
+/* =====================================================
+   ESCAPE KEY FOR MODAL
+===================================================== */
+
+function handleEscapeKey(event) {
+
+    if (
+        event.key === "Escape" &&
+        leaveModal &&
+        leaveModal.classList.contains("show")
+    ) {
+
+        cancelLeaving();
+    }
+}
+
+
+/* =====================================================
+   INITIALIZE ARENA
+===================================================== */
+
+function initializeArena() {
+
+    /* Load discussion setup */
+
+    loadArenaData();
+
+
+    /* Discussion initially stopped */
+
+    setDiscussionState(
+        false
+    );
+
+
+    /* Initial timer */
+
+    remainingSeconds =
+        0;
+
+    updateTimerDisplay();
+
+
+    /* =================================================
+       START TIMER
+    ================================================= */
+
+    if (startTimer) {
+
+        startTimer.addEventListener(
+            "click",
+            startDiscussion
+        );
+    }
+
+
+    /* =================================================
+       RESET TIMER
+    ================================================= */
+
+    if (resetTimer) {
+
+        resetTimer.addEventListener(
+            "click",
+            resetDiscussion
+        );
+    }
+
+
+    /* =================================================
+       SEND MESSAGE
+    ================================================= */
+
+    if (sendMessage) {
+
+        sendMessage.addEventListener(
+            "click",
+            sendUserMessage
+        );
+    }
+
+
+    /* =================================================
+       MESSAGE INPUT
+    ================================================= */
+
+    if (messageInput) {
+
+        messageInput.addEventListener(
+            "click",
+            () => {
+
+                if (!discussionStarted) {
+
+                    showTimerReminder();
+                }
+            }
+        );
+
+
+        messageInput.addEventListener(
+            "keydown",
+            handleMessageKeydown
+        );
+    }
+
+
+    /* =================================================
+       LEAVE BUTTON
+    ================================================= */
+
+    if (leaveArena) {
+
+        leaveArena.addEventListener(
+            "click",
+            leaveDiscussion
+        );
+    }
+
+
+    /* =================================================
+       LEAVE MODAL
+    ================================================= */
+
+    if (cancelLeave) {
+
+        cancelLeave.addEventListener(
+            "click",
+            cancelLeaving
+        );
+    }
+
+
+    if (confirmLeave) {
+
+        confirmLeave.addEventListener(
+            "click",
+            confirmLeaving
+        );
+    }
+
+
+    if (leaveModal) {
+
+        leaveModal.addEventListener(
+            "click",
+            handleModalClick
+        );
+    }
+
+
+    /* =================================================
+       ESCAPE KEY
+    ================================================= */
+
+    document.addEventListener(
+        "keydown",
+        handleEscapeKey
+    );
+}
+
+
+/* =====================================================
+   PAGE LOAD
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initializeArena
+);

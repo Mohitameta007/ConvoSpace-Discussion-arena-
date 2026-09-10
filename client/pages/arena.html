@@ -78,7 +78,7 @@
             </div>
 
 
-            <!-- LEAVE -->
+            <!-- LEAVE BUTTON -->
 
             <button
                 class="leave-button"
@@ -108,7 +108,7 @@
 
 
                 <!-- =================================
-                     PLAYERS PANEL
+                     PLAYERS
                 ================================== -->
 
                 <section class="participants-panel">
@@ -132,10 +132,7 @@
                         id="participantsList"
                     >
 
-                        <!--
-                            Players will be added
-                            dynamically by JavaScript.
-                        -->
+                        <!-- Players are added by JavaScript -->
 
                     </div>
 
@@ -145,7 +142,7 @@
 
 
                 <!-- =================================
-                     DISCUSSION LEAD PANEL
+                     DISCUSSION LEAD
                 ================================== -->
 
                 <section class="moderator-panel">
@@ -193,103 +190,12 @@
                 </section>
 
 
-
-                <!-- =================================
-                     TIMER PANEL
-                ================================== -->
-
-                <section class="timer-panel">
-
-
-                    <div class="timer-header">
-
-                        <span class="panel-label">
-                            DISCUSSION TIMER
-                        </span>
-
-                    </div>
-
-
-                    <!-- TIMER DISPLAY -->
-
-                    <div
-                        class="timer-display"
-                        id="timerDisplay"
-                    >
-                        00:00
-                    </div>
-
-
-                    <!-- SET TIMER -->
-
-                    <div class="timer-setting">
-
-
-                        <label
-                            for="timerMinutes"
-                            class="timer-label"
-                        >
-                            SET TIME
-                        </label>
-
-
-                        <div class="timer-input-row">
-
-                            <input
-                                type="number"
-                                id="timerMinutes"
-                                class="timer-input"
-                                min="1"
-                                max="180"
-                                placeholder="Minutes"
-                            >
-
-
-                            <span class="timer-unit">
-                                min
-                            </span>
-
-                        </div>
-
-
-                    </div>
-
-
-                    <!-- TIMER ACTIONS -->
-
-                    <div class="timer-actions">
-
-
-                        <button
-                            type="button"
-                            id="startTimer"
-                            class="timer-button timer-start"
-                        >
-                            Start
-                        </button>
-
-
-                        <button
-                            type="button"
-                            id="resetTimer"
-                            class="timer-button timer-reset"
-                        >
-                            Reset
-                        </button>
-
-
-                    </div>
-
-
-                </section>
-
-
             </aside>
 
 
 
             <!-- =====================================
-                 CENTER : CONVERSATION
+                 CENTER — CONVERSATION
             ====================================== -->
 
             <section class="conversation-panel">
@@ -304,14 +210,7 @@
                     id="messagesContainer"
                 >
 
-                    <!--
-                        Messages will appear here.
-
-                        Example:
-                        - User messages
-                        - Other player messages
-                        - Discussion lead instructions
-                    -->
+                    <!-- Messages are added by JavaScript -->
 
                 </div>
 
@@ -356,16 +255,17 @@
 
 
             <!-- =====================================
-                 RIGHT : DISCUSSION INFO
+                 RIGHT — SESSION INFO + TIMER
             ====================================== -->
 
             <aside class="info-panel">
 
 
-                <!-- SESSION -->
+                <!-- =================================
+                     SESSION
+                ================================== -->
 
                 <div class="info-section">
-
 
                     <span class="info-label">
                         SESSION
@@ -382,19 +282,21 @@
                         to speak and respond.
                     </p>
 
-
                 </div>
 
 
+
+                <!-- DIVIDER -->
 
                 <div class="info-divider"></div>
 
 
 
-                <!-- FORMAT -->
+                <!-- =================================
+                     FORMAT
+                ================================== -->
 
                 <div class="info-section">
-
 
                     <span class="info-label">
                         FORMAT
@@ -411,19 +313,21 @@
 
                     </div>
 
-
                 </div>
 
 
+
+                <!-- DIVIDER -->
 
                 <div class="info-divider"></div>
 
 
 
-                <!-- YOUR ROLE -->
+                <!-- =================================
+                     YOUR ROLE
+                ================================== -->
 
                 <div class="info-section">
-
 
                     <span class="info-label">
                         YOUR ROLE
@@ -434,8 +338,108 @@
                         Participant
                     </h3>
 
-
                 </div>
+
+
+
+                <!-- DIVIDER -->
+
+                <div class="info-divider"></div>
+
+
+
+                <!-- =================================
+                     DISCUSSION TIMER
+                ================================== -->
+
+                <section class="timer-panel">
+
+
+                    <div class="timer-header">
+
+                        <span class="panel-label">
+                            DISCUSSION TIMER
+                        </span>
+
+                    </div>
+
+
+                    <!-- TIMER DISPLAY -->
+
+                    <div
+                        class="timer-display"
+                        id="timerDisplay"
+                    >
+                        00:00
+                    </div>
+
+
+
+                    <!-- SET TIME -->
+
+                    <div class="timer-setting">
+
+
+                        <label
+                            for="timerMinutes"
+                            class="timer-label"
+                        >
+                            SET TIME
+                        </label>
+
+
+                        <div class="timer-input-row">
+
+
+                            <input
+                                type="number"
+                                id="timerMinutes"
+                                class="timer-input"
+                                min="1"
+                                max="180"
+                                placeholder="Minutes"
+                            >
+
+
+                            <span class="timer-unit">
+                                min
+                            </span>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- TIMER BUTTONS -->
+
+                    <div class="timer-actions">
+
+
+                        <button
+                            type="button"
+                            id="startTimer"
+                            class="timer-button timer-start"
+                        >
+                            Start
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="resetTimer"
+                            class="timer-button timer-reset"
+                        >
+                            Reset
+                        </button>
+
+
+                    </div>
+
+
+                </section>
 
 
             </aside>
@@ -471,6 +475,61 @@
 
 
     </main>
+
+
+
+    <!-- =========================================
+         LEAVE CONFIRMATION MODAL
+    ========================================== -->
+
+    <div
+        class="leave-modal"
+        id="leaveModal"
+    >
+
+
+        <div class="leave-modal-content">
+
+
+            <h2>
+                Leave discussion?
+            </h2>
+
+
+            <p>
+                Are you sure you want to leave this discussion?
+                Your current session will end.
+            </p>
+
+
+            <div class="leave-modal-actions">
+
+
+                <button
+                    type="button"
+                    id="cancelLeave"
+                    class="leave-modal-button cancel-leave"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="button"
+                    id="confirmLeave"
+                    class="leave-modal-button confirm-leave"
+                >
+                    Leave
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
 
 
 
